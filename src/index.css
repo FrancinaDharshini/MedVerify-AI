@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: 248 250 252;
+    --bg-elevated: 255 255 255;
+    --bg-glass: 255 255 255;
+    --text-primary: 15 23 42;
+    --text-secondary: 51 65 85;
+    --text-muted: 100 116 139;
+    --border-color: 226 232 240;
+    --glass-border: 255 255 255;
+    --glass-bg: 255 255 255;
+    --accent-glow: 51 128 252;
+    --grid-color: 51 128 252;
+  }
+
+  .dark {
+    --bg-base: 2 6 23;
+    --bg-elevated: 15 23 42;
+    --bg-glass: 15 23 42;
+    --text-primary: 241 245 249;
+    --text-secondary: 203 213 225;
+    --text-muted: 148 163 184;
+    --border-color: 30 41 59;
+    --glass-border: 148 163 184;
+    --glass-bg: 15 23 42;
+    --accent-glow: 89 165 255;
+    --grid-color: 89 165 255;
+  }
+
+  * {
+    @apply border-neutral-200 dark:border-neutral-800;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-neutral-50 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::selection {
+    @apply bg-primary-500/30;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300 dark:bg-neutral-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400 dark:bg-neutral-600;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-neutral-900/60 backdrop-blur-xl border border-neutral-200/60 dark:border-neutral-800/60;
+  }
+
+  .glass-strong {
+    @apply bg-white/90 dark:bg-neutral-900/80 backdrop-blur-2xl border border-neutral-200 dark:border-neutral-800;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl shadow-sm;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 40px -10px rgba(51, 128, 252, 0.4);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 40px -10px rgba(0, 176, 232, 0.4);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 40px -10px rgba(16, 185, 129, 0.4);
+  }
+
+  .glow-danger {
+    box-shadow: 0 0 40px -10px rgba(239, 68, 68, 0.4);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-500 via-accent-500 to-primary-600;
+  }
+
+  .text-gradient-success {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-success-500 to-accent-500;
+  }
+
+  .text-gradient-danger {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-danger-500 to-warning-500;
+  }
+
+  .grid-bg {
+    background-image: linear-gradient(rgba(var(--grid-color), 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(var(--grid-color), 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .skeleton {
+    @apply bg-gradient-to-r from-neutral-200 via-neutral-100 to-neutral-200 dark:from-neutral-800 dark:via-neutral-700 dark:to-neutral-800 bg-[length:1000px_100%] animate-shimmer rounded-lg;
+  }
+
+  .scanline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(51, 128, 252, 0.8), transparent);
+    animation: scanLine 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+  .animate-delay-700 { animation-delay: 700ms; }
+  .animate-delay-1000 { animation-delay: 1000ms; }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

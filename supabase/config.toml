@@ -1,0 +1,4 @@
+project_id = ""
+
+[functions.drug-reference]
+verify_jwt = false
